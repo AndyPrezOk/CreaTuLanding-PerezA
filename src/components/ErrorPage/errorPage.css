@@ -1,0 +1,23 @@
+.error-container{
+ width: 600px;
+ height: 480px;
+ text-align: center;
+ 
+ justify-content: center;
+ align-items: flex-start;
+
+}
+
+.error-img{
+    width: 450px;
+    justify-content: center;
+    margin-left: 15px;
+    border-radius: 5%;
+}
+.first-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(243, 239, 242);
+}

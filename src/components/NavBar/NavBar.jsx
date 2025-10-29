@@ -2,50 +2,43 @@ import "./navbar.css";
 import logoTenis from "../../assets/img/logoT.png";
 import CartWidget from "../CartWidget/CartWidget";
 import Container from 'react-bootstrap/Container';
+import { Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 const NavBar = () => {
-
     return (
-        /*<nav className="navbar">
-            <img src={logoTenis} className="logo" alt="" />
-
-            <ul className="items">
-                <li>Raquetas</li>
-                <li>Bolsos</li>
-                <li>Calzado</li>
-                <li>Indumentaria</li>
-                <li>Accesorios</li>
-            </ul>
-
-            <CartWidget className="carrito"/>
-        </nav>*/
-
-
         <Navbar expand="lg" className="navbar">
             <Container>
                 <Navbar.Brand href="#home" className="navbar-brand">
-                    <img src={logoTenis} className="logo" alt="" />
+                    <Link to={"/"}>
+                        <img src={logoTenis} className="logo" alt="" />
+                    </Link>
+
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-
                     <Nav className="mx-auto">
-                        <Nav.Link href="#bolsos" >Bolsos</Nav.Link>
-                        <Nav.Link href="#indumentaria">Indumentaria</Nav.Link>
-                         <Nav.Link href="#" >Raquetas</Nav.Link>
-                        <Nav.Link href="#accesorios">Accesorios</Nav.Link>
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/category/bolsos">Bolsos</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/category/raquetas">Raquetas</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/category/accesorios">Accesorios</Link>
+                            </li>
+                        </ul>
                     </Nav>
-
                 </Navbar.Collapse>
                 <CartWidget className="carrito" />
             </Container>
-
         </Navbar>
-
     )
 }
+
 export default NavBar
+
+

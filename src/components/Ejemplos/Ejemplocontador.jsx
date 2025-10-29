@@ -22,7 +22,7 @@ const Ejemplocontador = () => {
         <div>
             <p>Contador : {contador} </p>
             <button onClick={aumentar}>+</button>
-
+||
         </div>
     )
 }
