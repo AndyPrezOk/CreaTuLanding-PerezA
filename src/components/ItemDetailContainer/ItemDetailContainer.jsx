@@ -1,38 +1,49 @@
 import { useState, useEffect } from "react";
-import getProducts from "../../data/products.js";
-import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
-import { FadeLoader } from "react-spinners";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../../db/db.js";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import Loading from "../Loading/Loading.jsx";
+import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 
-
-function ItemDetailContainer() {
+const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const [productNotFound, setProductNotFound] = useState(false);
+
   const { id } = useParams();
 
+  const getProduct = async () => {
+    try {
+      const productRef = doc(db, "products", id);
+      const dataDb = await getDoc(productRef);
+
+      if (!dataDb.exists()) {
+        setProductNotFound(true);
+        return;
+      }
+
+      const data = { id: dataDb.id, ...dataDb.data() };
+      setProduct(data);
+
+    } catch (error) {
+      console.log(error);
+      setProductNotFound(true);
+
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
+    getProduct();
+  }, [id]);
 
-    getProducts()
-      .then((data) => {
-        const dataProduct = data.find((product) => product.id === parseInt(id));
-        setProduct(dataProduct);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  if (loading) return <Loading />;
 
+  if (productNotFound) return <ErrorPage />;
 
-  }, []);
+  return <ItemDetail product={product} />;
+};
 
-  return (
-    <div>
-     {
-      loading ? <FadeLoader /> : <ItemDetail product={product} />}
-
-    </div>
-  );
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;

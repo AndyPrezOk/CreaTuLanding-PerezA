@@ -1,9 +1,18 @@
-.card{
+.card-detail{
   max-width: 800px;
   text-align:left;
- 
-  }
-  .title{
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  height: 100%;
+}
+
+ .item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+ .title{
     font-size: x-large;
   }
 

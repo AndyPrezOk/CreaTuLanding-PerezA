@@ -7,10 +7,12 @@ const ErrorPage = () => {
       <div className="error-container">
       <h1>PAGE NOT FOUND</h1>
       <img className="error-img" src={error} alt="Página no encontrada" />
-      <p>Lo sentimos, la página que buscas no existe.</p>
+      <p>Lo sentimos, el producto que buscas no existe.</p>
     </div> 
     </div>
   )
 }
 
 export default ErrorPage
+
+

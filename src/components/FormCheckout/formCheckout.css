@@ -1,0 +1,15 @@
+.checkout-form {
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 12px;
+  background-color: #eae1e8;
+}
+
+.checkout-form input {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.checkout-form button {
+  border-radius: 10px;
+}

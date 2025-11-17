@@ -1,17 +1,18 @@
-import "./navbar.css";
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import logoTenis from "../../assets/img/logoT.png";
 import CartWidget from "../CartWidget/CartWidget";
-import Container from 'react-bootstrap/Container';
-import { Link } from "react-router-dom";
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import "./navbar.css";
 
 
 const NavBar = () => {
     return (
         <Navbar expand="lg" className="navbar">
             <Container>
-                <Navbar.Brand href="#home" className="navbar-brand">
+                <Navbar.Brand className="navbar-brand">
                     <Link to={"/"}>
                         <img src={logoTenis} className="logo" alt="" />
                     </Link>

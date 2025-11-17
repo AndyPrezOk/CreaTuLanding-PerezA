@@ -1,7 +1,21 @@
-.itemList{
+.itemList {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 20px 0;
+}
+
+.itemList .product-card {
+  display: flex;
+  justify-content: center;
+}
+
+.itemList .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itemList .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }

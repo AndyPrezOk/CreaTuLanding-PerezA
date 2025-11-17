@@ -1,45 +1,65 @@
-import getProducts from "../../data/products.js";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
-import { FadeLoader } from "react-spinners";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import Loading from "../Loading/Loading";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import db from "../../db/db.js";
 import "./itemListContainer.css";
 
 const ItemListContainer = ({ mensaje }) => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const { category } = useParams();
+
+  const validCategories = ["bolsos", "raquetas", "accesorios"];
+
+  if (category && !validCategories.includes(category.toLowerCase())) {
+    return <ErrorPage />;
+  }
+
+  const getProducts = async () => {
+    try {
+      let q = collection(db, "products");
+
+      if (category) {
+        q = query(q, where("category", "==", category));
+      }
+
+      const dataDb = await getDocs(q);
+      const data = dataDb.docs.map((productDb) => {
+        return { id: productDb.id, ...productDb.data() };
+      });
+
+      setProducts(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
-
-    getProducts()
-      .then((data) => {
-        if (category) {
-          const productsFilter = data.filter((product) => product.category === category);
-          setProducts(productsFilter);
-
-        } else {
-          setProducts(data)
-        }
-
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-
-  }, [category])
+    getProducts();
+  }, [category]);
 
   return (
-    <div className="itemListContainer">
-      <h5> {mensaje}  </h5>
+    <div className="itemListContainer container py-4 text-center">
+      <h4 className="mensaje mb-4">{mensaje}</h4>
+
       {
-        loading ? <div><FadeLoader /></div> : <ItemList products={products} />
+        loading ? (
+          <Loading />
+        ) : products.length === 0 && category ? (
+          <ErrorPage />
+        ) : (
+          <ItemList products={products} />
+        )
       }
-
     </div>
-  )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;
 
