@@ -11,6 +11,7 @@ const Item = ({ product }) => {
         <Card.Img variant="top" src={product.image} className="item-img" />
 
         <Card.Body className="text-center">
+          
           <Card.Title className="item-title">{product.name}</Card.Title>
           <Card.Text className="item-price"> ${formatPrice (product.price)}</Card.Text>
           <Link to={`/detail/${product.id}`} className="btn btn-dark w-100 mt-2">

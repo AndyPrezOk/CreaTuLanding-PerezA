@@ -1,8 +1,15 @@
+.checkout-container {
+    display: flex;
+    max-width: 900px;
+    justify-content: center;
+    padding: 20px;
+}
+
 .checkout-form {
   max-width: 400px;
   margin: 20px auto;
   border-radius: 12px;
-  background-color: #eae1e8;
+  background-color: rgba(210, 120, 70, 0.45) 100%;
 }
 
 .checkout-form input {

@@ -15,6 +15,17 @@
   box-shadow: 0px 4px 14px rgba(184, 150, 172, 0.08);
 }
 
- 
+ .btn-outline-dark {
+  border-color: #1f1f1f;
+  color: #1f1f1f;
+  transition: 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: #1f1f1f;
+  color: white;
+  transform: scale(1.03);
+}
+
 
 

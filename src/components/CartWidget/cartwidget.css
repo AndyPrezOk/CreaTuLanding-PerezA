@@ -1,33 +1,31 @@
-.carrito {
+.cart-context {
     width: 60px;
     justify-content: center;
     margin-left: 15px;
+    text-decoration: none;
 }
 
-.texto{
+.text {
     position: relative;
-    background-color: black;
+    background-color: whitesmoke;
     width: 1.5rem;
     height: 1.5rem;
-    color: rgb(249, 239, 239) ;
-    text-decoration: none;
+    color: rgb(17, 17, 17);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     text-align: center;
     font-size: 1rem;
-    top :1.7rem;
+    top: 2.5rem;
     left: 1.2rem;
 }
 
-.cart{
-    text-decoration: none;
+.cart {
+    width: 70px;
     cursor: pointer;
+    height: auto;
 }
 
-.carts a:hover{
-    background: #fff;
-    color: red;
-    border: solid 2px red;
-    transition-duration: .3s;
+.cart:hover {
+    transform: scale(1.1);
 }

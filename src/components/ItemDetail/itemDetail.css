@@ -1,22 +1,29 @@
-.card-detail{
-  max-width: 800px;
-  text-align:left;
+.card-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
   border-radius: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.15);
   height: 100%;
+  box-shadow: 0 4px 15px rgba(198, 124, 78, 0.15);
 }
 
- .item-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+.title {
+  font-size: x-large;
 }
 
- .title{
-    font-size: x-large;
-  }
+.description {
+  font-size: medium;
+}
 
-.description{
-    font-size: medium;
+.btn-outline-dark {
+  border-color: #1f1f1f;
+  color: #1f1f1f;
+  transition: 0.3s ease;
+}
 
+.btn-outline-dark:hover {
+  background-color: #1f1f1f;
+  color: white;
+  transform: scale(1.03);
 }

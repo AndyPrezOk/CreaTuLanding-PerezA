@@ -10,7 +10,7 @@ import "./navbar.css";
 
 const NavBar = () => {
     return (
-        <Navbar expand="lg" className="navbar">
+        <Navbar expand="lg" className="navbar" >
             <Container>
                 <Navbar.Brand className="navbar-brand">
                     <Link to={"/"}>
@@ -34,7 +34,7 @@ const NavBar = () => {
                         </ul>
                     </Nav>
                 </Navbar.Collapse>
-                <CartWidget className="carrito" />
+                <CartWidget  />
             </Container>
         </Navbar>
     )

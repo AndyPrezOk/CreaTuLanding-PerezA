@@ -31,28 +31,54 @@ const ItemDetail = ({ product }) => {
                             <Card.Title className="title">{product.name}</Card.Title>
                             <Card.Title className="description">{product.description}</Card.Title>
                             <Card.Title>{"$" + formatPrice(product.price)}</Card.Title>
-                            {
-                                hideItemCount ? (
-                                    <ItemCount stock={product.stock} addToCart={addToCart} />                                 ) : (
-
-                                    <div className="d-flex  ">
-                                        <Link to="/cart" className="btn btn-dark mt-3 me-3">
+                         
+                            {product.stock <= 5 && product.stock > 0 && (
+                                <p className="text-danger fw-bold mt-2">
+                                    {product.stock === 1
+                                        ? "Última unidad disponible"
+                                        : `Últimas ${product.stock} unidades disponibles`}
+                                </p>
+                            )}
+                            {product.stock === 0 ? (
+                                <div className="mt-4">
+                                    <p className="text-danger fw-bold fs-5">
+                                        Producto sin stock
+                                    </p>
+                                    <div className='d-flex'>
+                                        <button className="btn btn-secondary disabled me-3">
+                                            No disponible
+                                        </button>
+                                        <Link to="/cart" className="btn btn-outline-dark">
                                             Ir al carrito
                                         </Link>
-                                         <Link to="/" className="btn btn-outline-success mt-3">
-                                            Seguir comprando
-                                        </Link>
-                                        
-                                     </div>  
-                                )
-                            }
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                    {hideItemCount ? (
+                                        <ItemCount
+                                            stock={product.stock}
+                                            addToCart={addToCart}
+                                        />
+                                    ) : (
+                                        <div className="d-flex">
+                                            <Link to="/cart" className="btn btn-outline-dark mt-3 me-3">
+                                                Ir al carrito
+                                            </Link>
+                                            <Link to="/" className="btn btn-outline-dark mt-3">
+                                                Seguir comprando
+                                            </Link>
+                                        </div>
+                                    )}
+                                </>
+                            )}
 
                         </Card.Body>
                     </div>
                 </div>
             </Card>
         </div>
-
     );
 }
-export default ItemDetail 
+
+export default ItemDetail;
