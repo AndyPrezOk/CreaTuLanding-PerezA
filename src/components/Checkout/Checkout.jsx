@@ -23,7 +23,7 @@ const Checkout = () => {
     event.preventDefault();
 
     try {
-      await updateStock();  // ⭐ primero descontamos stock
+      await updateStock();  // 
 
       const order = {
         buyer: { ...dataForm },
@@ -37,7 +37,6 @@ const Checkout = () => {
     }
   };
 
-  // ⭐ Descuenta stock producto por producto
   const updateStock = async () => {
     for (const item of cart) {
       const itemRef = doc(db, "products", item.id);
