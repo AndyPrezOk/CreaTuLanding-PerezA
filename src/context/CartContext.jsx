@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const CartContext = createContext();
 
@@ -26,9 +27,15 @@ const CartProvider = ({ children }) => {
         if (currentQuantity + newProduct.quantity <= newProduct.stock) {
             newCart[indexProduct].quantity = currentQuantity + newProduct.quantity;
             setCart(newCart);
-        } else {
-            alert("No quedan unidades disponibles.");
-        }
+        } else{
+                Swal.fire({
+                    title: "Producto agotado",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    width:400,
+                    timer: 2500
+                });
+            }
     };
     const totalQuantity = () => {
         const quantity = cart.reduce((total, productCart) => total + productCart.quantity, 0);
@@ -53,8 +60,15 @@ const CartProvider = ({ children }) => {
         const newCart = cart.map((productCart) => {
             if (productCart.id === productId && productCart.quantity < productCart.stock) {
                 productCart = { ...productCart, quantity: productCart.quantity + 1 };
-            } else
-                alert("Stock insuficiente.");
+            } else{
+                Swal.fire({
+                    title: "Producto sin stock",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    width:400,
+                    timer: 2500
+                });
+            }
             return productCart;
         });
         setCart(newCart);
